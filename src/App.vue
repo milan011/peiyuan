@@ -1,85 +1,71 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it! 朵拉!!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <a-layout class="layout">
+    <a-layout-header class="layout-header">
+      <Header />
+    </a-layout-header>
+    <a-layout-content class="layout-content">
+      <main class="main-content">
+        <router-view />
+      </main>
+    </a-layout-content>
+    <a-layout-footer class="layout-footer">
+      <Footer />
+    </a-layout-footer>
+  </a-layout>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+:root {
+  --primary-color: #389e0d;
+  --secondary-color: #7cb305;
+  --light-color: #f6ffed;
+  --dark-color: #135200;
+  --text-color: #333;
+  --text-light: #666;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-nav {
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    padding: 10px 0;
   }
-
+  
   .logo {
-    margin: 0 2rem 0 0;
+    margin-bottom: 10px;
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  
+  .nav-menu {
+    width: 100%;
+    justify-content: center;
   }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  
+  .main-content {
+    margin-top: 120px;
   }
 }
 </style>
