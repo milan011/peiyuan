@@ -43,17 +43,16 @@ const products = [
     <div class="home-container">
       <!-- 英雄区域 -->
       <section class="hero-section">
-        <div class="hero-overlay"></div>
         <div class="container hero-content">
           <h1>优质香菇种植专家</h1>
           <p>专注于提供高品质、无污染的有机香菇，从农场到餐桌，全程可追溯</p>
           <a-button type="primary" size="large" @click="navigateTo('/about')">了解更多</a-button>
         </div>
       </section>
-      
+
       <!-- 产品特点 -->
-      <section class="features-section">
-        <div class="container"> 
+      <section class="section">
+        <div class="container">
           <div class="section-title">
             <h2>我们的优势</h2>
             <p>专业种植，品质保证</p>
@@ -104,6 +103,7 @@ const products = [
           </a-row>
         </div>
       </section>
+
       <!-- 产品展示 -->
       <section class="section" style="background-color: #f9f9f9;">
         <div class="container">
@@ -138,6 +138,31 @@ const products = [
           </div>
         </div>
       </section>
+
+      <!-- 关于我们 -->
+      <section class="section">
+        <div class="container">
+          <div class="section-title">
+            <h2>关于我们</h2>
+            <p>十年专注，品质传承</p>
+          </div>
+          <a-row :gutter="[48, 24]" align="middle">
+            <a-col :xs="24" :md="12">
+              <div class="about-text">
+                <p>绿源香菇成立于2010年，是一家专注于高品质香菇种植、加工和销售的企业。我们拥有现代化种植基地500亩，年产量达1000吨。</p>
+                <p>公司始终坚持"天然、健康、安全"的理念，从菌种选育到成品出厂，每一个环节都严格把控，确保产品质量。</p>
+                <p>我们的产品已通过有机认证、绿色食品认证，并远销日本、韩国、东南亚等国家和地区，深受消费者喜爱。</p>
+                <a-button type="primary" @click="navigateTo('/about')" style="margin-top: 20px;">查看更多</a-button>
+              </div>
+            </a-col>
+            <a-col :xs="24" :md="12">
+              <div class="about-image">
+                <img src="https://via.placeholder.com/400x300" alt="香菇种植基地">
+              </div>
+            </a-col>
+          </a-row>
+        </div>
+      </section>
     </div>
   </a-layout-content>
 </template>
@@ -147,43 +172,27 @@ const products = [
   padding: 0;
 }
 
-/* 完全重置布局，避免任何margin/padding冲突 */
+/* 修复被Header遮挡的问题 */
 .layout-content {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+  margin-top: 64px; /* 与Header高度一致 */
+  min-height: calc(100vh - 64px - 69px); /* 减去Header和Footer的高度 */
 }
 
-/* 英雄区域 - 使用绝对定位覆盖在Header下方 */
 .hero-section {
-  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
   height: 500px;
   display: flex;
   align-items: center;
+  color: white;
   text-align: center;
-  overflow: hidden;
-  /* 确保不会影响其他元素 */
-  flex-shrink: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
-  z-index: 1;
+  margin-top: -64px; /* 抵消layout-content的margin-top */
+  padding-top: 64px; /* 确保内容不被遮挡 */
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
-  color: white;
 }
 
 .hero-content h1 {
@@ -196,17 +205,8 @@ const products = [
   margin-bottom: 30px;
 }
 
-/* 产品特点部分 - 使用margin而不是padding */
-.features-section {
-  margin: 60px 0;
-  background: white;
-  position: relative;
-  /* 防止margin折叠 */
-  display: flow-root;
-}
-
-.features-section .container {
-  padding: 0; /* 容器内部不需要额外padding */
+.section {
+  padding: 60px 0;
 }
 
 .section-title {
@@ -254,10 +254,61 @@ const products = [
   align-items: center;
 }
 
+.product-card {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.product-img {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-text {
+  padding-right: 20px;
+}
+
+.about-text p {
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.about-image {
+  height: 300px;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
+  .layout-content {
+    margin-top: 120px; /* 移动端Header更高 */
+    min-height: calc(100vh - 120px - 69px); /* 减去Header和Footer的高度 */
+  }
+  
   .hero-section {
     height: 400px;
+    margin-top: -120px; /* 抵消layout-content的margin-top */
+    padding-top: 120px; /* 确保内容不被遮挡 */
   }
   
   .hero-content h1 {
@@ -268,8 +319,13 @@ const products = [
     font-size: 1rem;
   }
   
-  .features-section {
-    margin: 40px 0;
+  .section {
+    padding: 40px 0;
+  }
+  
+  .about-text {
+    padding-right: 0;
+    margin-bottom: 24px;
   }
   
   .feature-icon {

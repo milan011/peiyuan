@@ -6,17 +6,14 @@ import Footer from './components/Footer.vue'
 
 <template>
   <a-layout class="layout">
-    <a-layout-header class="layout-header">
-      <Header />
-    </a-layout-header>
-    <a-layout-content class="layout-content">
+    <Header />
+    <!-- <a-layout-content class="layout-content">
       <main class="main-content">
         <router-view />
       </main>
-    </a-layout-content>
-    <a-layout-footer class="layout-footer">
-      <Footer />
-    </a-layout-footer>
+    </a-layout-content> -->
+    <router-view />
+    <Footer />
   </a-layout>
 </template>
 
@@ -42,30 +39,36 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+.layout {
+  min-height: 100vh;
 }
+
+.layout-content {
+  padding: 24px;
+  background: #fff;
+}
+
+.main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 /* 响应式调整 */
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    padding: 10px 0;
-  }
-  
-  .logo {
-    margin-bottom: 10px;
-  }
-  
-  .nav-menu {
-    width: 100%;
-    justify-content: center;
-  }
-  
+@media (max-width: 1080px) {
   .main-content {
-    margin-top: 120px;
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .layout-content {
+    margin-top: 120px; /* 移动端头部更高 */
   }
 }
 </style>

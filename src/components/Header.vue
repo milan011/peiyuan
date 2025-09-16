@@ -17,40 +17,26 @@ watch(() => route.path, (newPath) => {
   else if (newPath === '/contact') currentMenu.value = ['contact'];
 }, { immediate: true });
 
-// 处理滚动效果
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20;
-};
-
 // 导航函数
 const navigateTo = (path) => {
   router.push(path);
   isMobileMenuOpen.value = false;
 };
-
-// 切换移动端菜单
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-};
-
-// 生命周期钩子
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
 </script>
 
 <template>
-  <header class="header">
-    <div class="container header-content">
+  <a-layout-header class="layout-header">
+    <div class="header-content">
       <div class="logo">
         <img src="@/assets/logo.png" alt="绿源香菇logo">
-        <div class="logo-text">绿源香菇</div>
+        <div class="logo-text">培元农业</div>
       </div>
-      <a-menu v-model:selectedKeys="currentMenu" mode="horizontal" class="nav-menu">
+      <a-menu 
+        v-model:selectedKeys="currentMenu" 
+        mode="horizontal" 
+        class="nav-menu"
+        :style="{ borderBottom: 'none', lineHeight: '64px' }"
+      >
         <a-menu-item key="home" @click="navigateTo('/')">首页</a-menu-item>
         <a-menu-item key="about" @click="navigateTo('/about')">关于我们</a-menu-item>
         <a-menu-item key="products" @click="navigateTo('/products')">产品中心</a-menu-item>
@@ -58,25 +44,27 @@ onUnmounted(() => {
         <a-menu-item key="contact" @click="navigateTo('/contact')">联系我们</a-menu-item>
       </a-menu>
     </div>
-  </header>
+  </a-layout-header>
 </template>
 
 <style scoped>
-/* Header 样式 */
-.header {
-  background-color: white;
+.layout-header {
+  padding: 0;
+  background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  width: 100%;
+  position: sticky;
   top: 0;
   z-index: 1000;
+  height: auto;
 }
 
 .header-content {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .logo {
@@ -95,7 +83,24 @@ onUnmounted(() => {
   color: var(--primary-color);
 }
 
-.nav-menu {
-  border-bottom: none;
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    padding: 10px 15px;
+  }
+  
+  .logo {
+    margin-bottom: 10px;
+  }
+  
+  .nav-menu {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-content {
+    margin-top: 120px;
+  }
 }
 </style>
