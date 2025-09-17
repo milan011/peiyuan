@@ -38,9 +38,9 @@ const navigateTo = (path) => {
         :style="{ borderBottom: 'none', lineHeight: '64px' }"
       >
         <a-menu-item key="home" @click="navigateTo('/')">首页</a-menu-item>
-        <a-menu-item key="about" @click="navigateTo('/about')">关于我们</a-menu-item>
         <a-menu-item key="products" @click="navigateTo('/products')">产品中心</a-menu-item>
         <a-menu-item key="news" @click="navigateTo('/news')">新闻动态</a-menu-item>
+        <a-menu-item key="about" @click="navigateTo('/about')">关于我们</a-menu-item>
         <a-menu-item key="contact" @click="navigateTo('/contact')">联系我们</a-menu-item>
       </a-menu>
     </div>

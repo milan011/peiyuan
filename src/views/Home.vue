@@ -1,8 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { 
-  EnvironmentOutlined, 
-  SafetyCertificateOutlined, 
+import {
+  EnvironmentOutlined,
+  SafetyCertificateOutlined,
   ExperimentOutlined,
   ArrowRightOutlined,
   ShopOutlined,
@@ -12,9 +12,22 @@ import {
   PhoneOutlined
 } from '@ant-design/icons-vue';
 import { onMounted, ref } from 'vue';
+import localImage from '@/assets/images/home.png';
+import kexueImage from '@/assets/images/kexue.png';
+import youjiImage from '@/assets/images/youji.png';
+import chandiImage from '@/assets/images/chandi.png';
+import chanpinImage from '@/assets/images/chanpin.png';
+import gongyiImage from '@/assets/images/gongyi.png';
+import xinxianImage from '@/assets/images/xinxian.png';
+import hezuoImage from '@/assets/images/hezuo.png';
+
+
+
+const localImageSrc = ref(localImage);
 
 const router = useRouter();
 const headerHeight = ref(64); // 默认header高度
+ 
 
 onMounted(() => {
   // 获取header实际高度
@@ -35,17 +48,17 @@ const products = [
   {
     name: '新鲜香菇',
     description: '当日采摘，新鲜直达',
-    image: 'https://images.unsplash.com/photo-1547516505-4fce0fd5c6df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'
+    image: xinxianImage
   },
   {
     name: '干制香菇',
-    description: '传统工艺，香味浓郁',
-    image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'
+    description: '科学工艺，香味浓郁',
+    image: gongyiImage
   },
   {
-    name: '香菇酱',
+    name: '优质产品',
     description: '秘制配方，佐餐佳品',
-    image: 'https://images.unsplash.com/photo-1529391409740-59f2cea06bc6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'
+    image: chanpinImage
   }
 ];
 
@@ -54,16 +67,19 @@ const features = [
   {
     title: '优质产地',
     description: '来自香菇黄金产区的优质品种，自然环境优越',
+    image: chandiImage,
     icon: EnvironmentOutlined
   },
   {
     title: '有机认证',
     description: '通过有机认证，无农药残留，食用更安心',
+    image: youjiImage,
     icon: SafetyCertificateOutlined
   },
   {
     title: '科学培育',
     description: '采用现代科学培育技术，确保品质稳定',
+    image: kexueImage,
     icon: ExperimentOutlined
   }
 ];
@@ -90,18 +106,16 @@ const news = [
 
 <template>
   <div class="home-container">
-    <!-- Header占位符 -->
-    <div class="header-placeholder" :style="{ height: `${headerHeight}px` }"></div>
-    
     <!-- 英雄区域 -->
     <section class="hero-section">
       <div class="container">
         <div class="hero-content">
-          <h1>优质香菇种植专家</h1>
-          <p class="hero-description">专注于提供高品质、无污染的有机香菇，从农场到餐桌，全程可追溯</p>
+          <h2>优质香菇种植专家</h2>
+          <p class="hero-description">专注于提供高品质、无污染的有机香菇，阳光包容，培育为元</p>
           <div class="hero-actions">
             <a-button type="primary" size="large" @click="navigateTo('/products')">
-              查看产品 <ArrowRightOutlined />
+              查看产品
+              <ArrowRightOutlined />
             </a-button>
             <a-button size="large" @click="navigateTo('/about')" style="margin-left: 16px;">
               关于我们
@@ -109,7 +123,10 @@ const news = [
           </div>
         </div>
         <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1547516505-4fce0fd5c6df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="优质香菇" />
+          <a-image
+            :preview=false
+            :src="localImageSrc"
+          />
         </div>
       </div>
     </section>
@@ -119,13 +136,18 @@ const news = [
       <div class="container">
         <div class="section-header">
           <h2>为什么选择我们</h2>
-          <p>十年专注，品质保证</p>
+          <p>六统一分，品质保证</p>
         </div>
         <a-row :gutter="[32, 32]">
           <a-col v-for="(feature, index) in features" :key="index" :xs="24" :md="8">
             <div class="feature-card">
               <div class="feature-icon">
-                <component :is="feature.icon" />
+                <!-- <component :is="feature.icon" /> -->
+                <a-image
+                  height="200px"
+                  :preview=false
+                  :src="feature.image"
+                />
               </div>
               <h3>{{ feature.title }}</h3>
               <p>{{ feature.description }}</p>
@@ -193,7 +215,15 @@ const news = [
     <section class="contact-section">
       <div class="container">
         <a-row :gutter="[48, 24]" align="middle">
-          <a-col :xs="24" :md="12">
+          <a-col :xs="24" :md="16">
+            <div class="contact-image">
+              <a-image
+                :preview=false
+                :src="hezuoImage"
+              />
+            </div>
+          </a-col>
+          <a-col :xs="24" :md="8">
             <div class="contact-content">
               <h2>开始合作</h2>
               <p>我们致力于为客户提供最优质的香菇产品和服务。无论您是批发商、零售商还是餐饮企业，我们都期待与您建立长期合作关系。</p>
@@ -202,11 +232,7 @@ const news = [
               </a-button>
             </div>
           </a-col>
-          <a-col :xs="24" :md="12">
-            <div class="contact-image">
-              <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="联系我们" />
-            </div>
-          </a-col>
+          
         </a-row>
       </div>
     </section>
@@ -215,6 +241,7 @@ const news = [
 
 <style scoped>
 .home-container {
+  margin-top:180em !important;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
@@ -228,7 +255,7 @@ const news = [
 
 /* 英雄区域修复 */
 .hero-section {
-  padding: 80px 0;
+  /* padding: 80px 0; */
   background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
 }
 
@@ -237,13 +264,13 @@ const news = [
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 48px;
   align-items: center;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
+.hero-content h2 {
+  font-size: 2rem;
   font-weight: 700;
   color: #389e0d;
   margin-bottom: 24px;
@@ -414,7 +441,8 @@ const news = [
 /* 响应式设计 */
 @media (max-width: 768px) {
   .header-placeholder {
-    height: 56px !important; /* 移动端header高度 */
+    height: 56px !important;
+    /* 移动端header高度 */
   }
 
   .hero-section .container {
