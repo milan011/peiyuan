@@ -44,7 +44,7 @@
         </div>
       </div> -->
       <div class="footer-bottom">
-        <p>© 2023 绿源香菇有限公司 版权所有 | 备案号：粤ICP备xxxxxxxx号</p>
+        <p>© 2025 培元农业科技石家庄有限公司 版权所有 | 备案号：冀ICP备xxxxxxxx号</p>
       </div>
     </div>
   </a-layout-footer>
