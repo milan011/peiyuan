@@ -217,7 +217,7 @@ const contactSupplier = (product) => {
 </script>
 
 <template>
-  <section style="margin-top:60em !important">
+  <section>
   <a-flex class="mushroom-page" vertical gap="large">
     <!-- 顶部 Banner -->
     <a-flex class="banner" justify="center" align="center" vertical>

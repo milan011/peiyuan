@@ -157,7 +157,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <section   style="margin-top: 80em !important;">
+  <section>
 
   <a-flex class="news-page" vertical gap="large">
     <!-- 顶部 Banner -->

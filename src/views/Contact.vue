@@ -134,7 +134,7 @@ const handleContact = (record) => {
 }
 </script>
 <template>
-    <section style="margin-top:70em !important">
+    <section>
   <a-flex class="contact-page" vertical gap="large">
     <!-- 顶部 Banner -->
     <a-flex class="contact-banner" justify="center" align="center" vertical>

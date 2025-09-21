@@ -28,7 +28,7 @@ const navigateTo = (path) => {
   <a-layout-header class="layout-header">
     <div class="header-content">
       <div class="logo">
-        <img src="@/assets/logo.png" alt="绿源香菇logo">
+        <img src="@/assets/logo.png" alt="培元农业logo">
         <div class="logo-text">培元农业</div>
       </div>
       <a-menu 

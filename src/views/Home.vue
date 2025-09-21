@@ -241,7 +241,7 @@ const news = [
 
 <style scoped>
 .home-container {
-  margin-top:180em !important;
+  /* margin-top:180em !important; */
   max-width: 100%;
   margin: 0 auto;
   padding: 0;

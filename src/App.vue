@@ -7,7 +7,7 @@ import Footer from './components/Footer.vue'
 <template>
   <a-layout class="layout">
     <Header />
-    <a-layout-content :style="contentStyle">
+    <a-layout-content>
       <router-view />
     </a-layout-content>
     <Footer />
@@ -15,6 +15,9 @@ import Footer from './components/Footer.vue'
 </template>
 
 <style scoped>
+body {
+  height: auto !important;
+}
 :root {
   --primary-color: #389e0d;
   --secondary-color: #7cb305;
